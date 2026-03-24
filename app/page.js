@@ -60,11 +60,12 @@ export default function HomePage() {
               transform: `translateY(${productTranslateY}px)`,
             }}
           >
-            <div className="can-cluster">
-              <div className="can can-back-left">
-                <div className="mountain" />
-                <div className="brand">ALPINE SIP</div>
-                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
+             <div className="product-image-card">
+              <img
+              src="/images/alpine-beach-can.jpg"
+              alt="Alpine Sip cans in ice with raspberry and lemon"
+              className="product-image"
+              />
               </div>
 
               <div className="can can-back-right">
@@ -272,163 +273,25 @@ export default function HomePage() {
           transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        .can-cluster {
-          position: relative;
-          height: 620px;
-          border-radius: 38px;
-          overflow: hidden;
-          background:
-            radial-gradient(circle at top center, rgba(255, 255, 255, 0.96), rgba(240, 244, 248, 0.85) 52%, rgba(226, 232, 240, 0.9) 100%);
-          border: 1px solid rgba(148, 163, 184, 0.18);
-          box-shadow:
-            0 28px 70px rgba(15, 23, 42, 0.08),
-            inset 0 1px 0 rgba(255, 255, 255, 0.9);
-          backdrop-filter: blur(14px);
-        }
+        .product-image-card {
+  position: relative;
+  height: 620px;
+  border-radius: 38px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow:
+    0 28px 70px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+}
 
-        .can {
-          position: absolute;
-          width: 190px;
-          height: 420px;
-          border-radius: 30px 30px 22px 22px;
-          background:
-            radial-gradient(circle at 22% 16%, rgba(255, 255, 255, 0.98), rgba(245, 247, 250, 0.98) 30%, rgba(231, 236, 242, 0.96) 100%);
-          border: 1px solid rgba(148, 163, 184, 0.2);
-          box-shadow:
-            inset 0 0 0 1px rgba(255, 255, 255, 0.75),
-            inset -18px 0 36px rgba(148, 163, 184, 0.08),
-            0 18px 34px rgba(15, 23, 42, 0.12);
-          transform-origin: center bottom;
-        }
-
-        .can::before {
-          content: "";
-          position: absolute;
-          top: 8px;
-          left: 14px;
-          right: 14px;
-          height: 16px;
-          border-radius: 999px;
-          background: linear-gradient(to bottom, #cfd6df, #eef2f7);
-          opacity: 0.9;
-        }
-
-        .can::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background-image:
-            radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.95) 0 1.2px, transparent 1.4px),
-            radial-gradient(circle at 38% 32%, rgba(255, 255, 255, 0.88) 0 1.8px, transparent 2px),
-            radial-gradient(circle at 75% 24%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 1.7px),
-            radial-gradient(circle at 62% 58%, rgba(255, 255, 255, 0.86) 0 2px, transparent 2.2px),
-            radial-gradient(circle at 42% 76%, rgba(255, 255, 255, 0.84) 0 2.4px, transparent 2.7px),
-            radial-gradient(circle at 80% 72%, rgba(255, 255, 255, 0.88) 0 1.5px, transparent 1.8px),
-            radial-gradient(circle at 18% 64%, rgba(255, 255, 255, 0.9) 0 1.6px, transparent 1.8px),
-            radial-gradient(circle at 68% 40%, rgba(255, 255, 255, 0.82) 0 2.6px, transparent 2.9px);
-          opacity: 0.7;
-          pointer-events: none;
-        }
-
-        .mountain {
-          position: absolute;
-          top: 86px;
-          left: 50%;
-          width: 112px;
-          height: 44px;
-          transform: translateX(-50%);
-          background: #dc2626;
-          clip-path: polygon(
-            0% 100%,
-            24% 44%,
-            37% 58%,
-            55% 0%,
-            74% 46%,
-            82% 24%,
-            100% 100%,
-            83% 72%,
-            71% 84%,
-            57% 34%,
-            45% 70%,
-            28% 60%
-          );
-          filter: drop-shadow(0 6px 10px rgba(220, 38, 38, 0.18));
-        }
-
-        .brand {
-          position: absolute;
-          top: 160px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 88%;
-          text-align: center;
-          font-weight: 800;
-          font-size: 0.95rem;
-          letter-spacing: 0.08em;
-          color: #0f2340;
-          white-space: nowrap;
-        }
-
-        .flavor {
-          position: absolute;
-          left: 50%;
-          bottom: 42px;
-          transform: translateX(-50%);
-          width: 82%;
-          text-align: center;
-          font-size: 0.64rem;
-          letter-spacing: 0.05em;
-          color: #334155;
-          white-space: nowrap;
-        }
-
-        .can-main {
-          left: 50%;
-          top: 104px;
-          transform: translateX(-50%) rotate(-2deg);
-          z-index: 5;
-        }
-
-        .can-front-left {
-          left: 15%;
-          top: 150px;
-          transform: rotate(-13deg);
-          z-index: 4;
-        }
-
-        .can-front-right {
-          right: 12%;
-          top: 148px;
-          transform: rotate(11deg);
-          z-index: 4;
-        }
-
-        .can-back-left {
-          left: 7%;
-          top: 104px;
-          transform: rotate(-20deg) scale(0.94);
-          opacity: 0.95;
-          z-index: 2;
-        }
-
-        .can-back-right {
-          right: 8%;
-          top: 100px;
-          transform: rotate(18deg) scale(0.95);
-          opacity: 0.95;
-          z-index: 2;
-        }
-
-        .surface-reflection {
-          position: absolute;
-          left: 7%;
-          right: 7%;
-          bottom: 18px;
-          height: 82px;
-          border-radius: 999px;
-          background: radial-gradient(circle, rgba(148, 163, 184, 0.18), rgba(148, 163, 184, 0));
-          filter: blur(16px);
-        }
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
         .product-copy {
           padding-right: 20px;
