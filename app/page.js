@@ -46,74 +46,46 @@ export default function HomePage() {
             Premium ski water with raspberry and lemon — inspired by the perfect ski day and crafted for a clean, distinctive signature taste.
           </p>
         </section>
-
         <section className="product-section">
-          <div className="floating raspberry one" />
-          <div className="floating raspberry two" />
-          <div className="floating lemon one" />
-          <div className="floating lemon two" />
+  <div className="floating raspberry one" />
+  <div className="floating raspberry two" />
+  <div className="floating lemon one" />
+  <div className="floating lemon two" />
 
-          <div
-            className="product-stage"
-            style={{
-              opacity: productOpacity,
-              transform: `translateY(${productTranslateY}px)`,
-            }}
-          >
-             <div className="product-image-card">
-              <img
-              src="/images/alpine-beach-can.jpg"
-              alt="Alpine Sip cans in ice with raspberry and lemon"
-              className="product-image"
-              />
-              </div>
+  <div
+    className="product-stage"
+    style={{
+      opacity: productOpacity,
+      transform: `translateY(${productTranslateY}px)`,
+    }}
+  >
+    <div className="product-image-card">
+      <img
+        src="/images/alpine-beach-can.jpg"
+        alt="Alpine Sip cans in ice with raspberry and lemon"
+        className="product-image"
+      />
+    </div>
 
-              <div className="can can-back-right">
-                <div className="mountain" />
-                <div className="brand">ALPINE SIP</div>
-                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
-              </div>
+    <div className="product-copy">
+      <p className="eyebrow">COMING SOON</p>
+      <h2>Cold. Clean. Alpine.</h2>
+      <p>
+        The taste of your last perfect ski day — consistent, clean and made for
+        mountains, city and everything in between.
+      </p>
 
-              <div className="can can-front-left">
-                <div className="mountain" />
-                <div className="brand">ALPINE SIP</div>
-                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
-              </div>
-
-              <div className="can can-front-right">
-                <div className="mountain" />
-                <div className="brand">ALPINE SIP</div>
-                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
-              </div>
-
-              <div className="can can-main">
-                <div className="mountain" />
-                <div className="brand">ALPINE SIP</div>
-                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
-              </div>
-
-              <div className="surface-reflection" />
-            </div>
-
-            <div className="product-copy">
-              <p className="eyebrow">COMING SOON</p>
-              <h2>Cold. Clean. Alpine.</h2>
-              <p>
-                Der Geschmack vom letzten perfekten Skitag — konsistent, clean
-                und gemacht für Berg, Stadt und alles dazwischen.
-              </p>
-
-              <div className="button-row">
-                <a href="#notify" className="primary-button">
-                  Launching soon
-                </a>
-                <a href="#story" className="secondary-button">
-                  Mehr erfahren
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div className="button-row">
+        <a href="#notify" className="primary-button">
+          Launching soon
+        </a>
+        <a href="#story" className="secondary-button">
+          Learn more
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
         <section className="story-section" id="story">
           <div className="story-card">
