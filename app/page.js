@@ -1,220 +1,231 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setScrollY(window.scrollY);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const heroScale = Math.max(1, 1 + scrollY * 0.00015);
-  const heroTranslate = Math.min(scrollY * 0.12, 60);
-  const productOpacity = Math.min(Math.max((scrollY - 220) / 320, 0), 1);
-  const productTranslate = Math.max(70 - scrollY * 0.08, 0);
+  const heroScale = 1 + Math.min(scrollY * 0.00012, 0.08);
+  const heroTranslateY = Math.min(scrollY * 0.12, 40);
+  const productOpacity = Math.min(Math.max((scrollY - 180) / 260, 0), 1);
+  const productTranslateY = Math.max(70 - scrollY * 0.12, 0);
 
   return (
-    <main className="page">
-      <section className="hero">
-        <div
-          className="heroImageWrap"
-          style={{
-            transform: `scale(${heroScale}) translateY(${heroTranslate}px)`,
-          }}
-        >
-          <Image
-            src="/images/alpine-chair-hero.jpg"
-            alt="Alpine Sip Hero"
-            fill
-            priority
-            className="heroImage"
-          />
-        </div>
-
-        <div className="heroOverlay" />
-        <div className="heroBottomFade" />
-      </section>
-
-      <section className="intro">
-        <p className="eyebrow">ALPINE SIP</p>
-        <h2>Same taste. Different places.</h2>
-        <p className="introText">
-          Premium Skiwasser mit Raspberry und Lemon — clean, kalt und gemacht
-          für den perfekten Moment zwischen Berg, Sonne und Après-Ski.
-        </p>
-      </section>
-
-      <section className="productSection">
-        <div className="floating floatingOne" />
-        <div className="floating floatingTwo" />
-        <div className="floating floatingThree" />
-        <div className="floating floatingFour" />
-
-        <div
-          className="productStage"
-          style={{
-            opacity: productOpacity,
-            transform: `translateY(${productTranslate}px)`,
-          }}
-        >
-          <div className="canCluster">
-            <div className="can canBackLeft">
-              <div className="mountain" />
-              <div className="brand">ALPINE SIP</div>
-              <div className="flavor">Skiwasser · Raspberry · Lemon</div>
-            </div>
-
-            <div className="can canBackRight">
-              <div className="mountain" />
-              <div className="brand">ALPINE SIP</div>
-              <div className="flavor">Skiwasser · Raspberry · Lemon</div>
-            </div>
-
-            <div className="can canFrontLeft">
-              <div className="mountain" />
-              <div className="brand">ALPINE SIP</div>
-              <div className="flavor">Skiwasser · Raspberry · Lemon</div>
-            </div>
-
-            <div className="can canFrontRight">
-              <div className="mountain" />
-              <div className="brand">ALPINE SIP</div>
-              <div className="flavor">Skiwasser · Raspberry · Lemon</div>
-            </div>
-
-            <div className="can canMain">
-              <div className="mountain" />
-              <div className="brand">ALPINE SIP</div>
-              <div className="flavor">Skiwasser · Raspberry · Lemon</div>
-            </div>
-
-            <div className="reflection" />
+    <>
+      <main className="page">
+        <section className="hero">
+          <div
+            className="hero-image-wrap"
+            style={{
+              transform: `scale(${heroScale}) translateY(${heroTranslateY}px)`,
+            }}
+          >
+            <img
+              src="/images/alpine-chair-hero.jpg"
+              alt="Alpine Sip Hero"
+              className="hero-image"
+            />
           </div>
 
-          <div className="productCopy">
-            <p className="eyebrow">COMING SOON</p>
-            <h3>Cold. Clean. Alpine.</h3>
-            <p>
-              Der Geschmack vom letzten perfekten Skitag — überall derselbe.
-            </p>
+          <div className="hero-overlay" />
+          <div className="hero-fade" />
+        </section>
 
-            <div className="ctaRow">
-              <a href="#notify" className="primaryBtn">
-                Launching Soon
-              </a>
-              <a href="#story" className="ghostBtn">
-                Mehr erfahren
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="story" id="story">
-        <div className="storyCard">
-          <p className="eyebrow">THE IDEA</p>
-          <h3>Was hat dein letzter Skitag eigentlich geschmeckt?</h3>
-          <p>
-            Alpine Sip bringt Skiwasser aus dem Zufall raus und macht daraus
-            einen Signature Taste — klar, wiedererkennbar und ready für Berg,
-            Stadt und Beach Club.
-          </p>
-        </div>
-
-        <div className="storyGrid">
-          <div className="infoTile">
-            <span className="tileLabel">Taste</span>
-            <strong>Raspberry · Lemon</strong>
-          </div>
-          <div className="infoTile">
-            <span className="tileLabel">Mood</span>
-            <strong>Après-Ski Lifestyle</strong>
-          </div>
-          <div className="infoTile">
-            <span className="tileLabel">Style</span>
-            <strong>Minimal · Premium · Clean</strong>
-          </div>
-        </div>
-      </section>
-
-      <section className="notify" id="notify">
-        <div className="notifyBox">
+        <section className="intro">
           <p className="eyebrow">ALPINE SIP</p>
-          <h3>Launching soon.</h3>
-          <p>
-            Die erste Edition kommt bald. Bis dahin bleibt’s exklusiv.
+          <h1>Same taste. Different places.</h1>
+          <p className="intro-text">
+            Premium Skiwasser mit Raspberry und Lemon — inspiriert vom perfekten
+            Skitag und gemacht für einen klaren, wiedererkennbaren Signature
+            Taste.
           </p>
-        </div>
-      </section>
+        </section>
+
+        <section className="product-section">
+          <div className="floating raspberry one" />
+          <div className="floating raspberry two" />
+          <div className="floating lemon one" />
+          <div className="floating lemon two" />
+
+          <div
+            className="product-stage"
+            style={{
+              opacity: productOpacity,
+              transform: `translateY(${productTranslateY}px)`,
+            }}
+          >
+            <div className="can-cluster">
+              <div className="can can-back-left">
+                <div className="mountain" />
+                <div className="brand">ALPINE SIP</div>
+                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
+              </div>
+
+              <div className="can can-back-right">
+                <div className="mountain" />
+                <div className="brand">ALPINE SIP</div>
+                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
+              </div>
+
+              <div className="can can-front-left">
+                <div className="mountain" />
+                <div className="brand">ALPINE SIP</div>
+                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
+              </div>
+
+              <div className="can can-front-right">
+                <div className="mountain" />
+                <div className="brand">ALPINE SIP</div>
+                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
+              </div>
+
+              <div className="can can-main">
+                <div className="mountain" />
+                <div className="brand">ALPINE SIP</div>
+                <div className="flavor">Skiwasser · Raspberry · Lemon</div>
+              </div>
+
+              <div className="surface-reflection" />
+            </div>
+
+            <div className="product-copy">
+              <p className="eyebrow">COMING SOON</p>
+              <h2>Cold. Clean. Alpine.</h2>
+              <p>
+                Der Geschmack vom letzten perfekten Skitag — konsistent, clean
+                und gemacht für Berg, Stadt und alles dazwischen.
+              </p>
+
+              <div className="button-row">
+                <a href="#notify" className="primary-button">
+                  Launching soon
+                </a>
+                <a href="#story" className="secondary-button">
+                  Mehr erfahren
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="story-section" id="story">
+          <div className="story-card">
+            <p className="eyebrow">THE IDEA</p>
+            <h2>Was hat dein letzter Skitag eigentlich geschmeckt?</h2>
+            <p>
+              Alpine Sip macht aus Skiwasser einen Signature Taste — nicht
+              zufällig, sondern wiedererkennbar. Premium, reduziert und mit
+              echtem Lifestyle-Charakter.
+            </p>
+          </div>
+
+          <div className="info-grid">
+            <div className="info-tile">
+              <span className="tile-label">Taste</span>
+              <strong>Raspberry · Lemon</strong>
+            </div>
+            <div className="info-tile">
+              <span className="tile-label">Mood</span>
+              <strong>Après-Ski Lifestyle</strong>
+            </div>
+            <div className="info-tile">
+              <span className="tile-label">Style</span>
+              <strong>Minimal · Premium · Clean</strong>
+            </div>
+          </div>
+        </section>
+
+        <section className="notify-section" id="notify">
+          <div className="notify-box">
+            <p className="eyebrow">ALPINE SIP</p>
+            <h2>Launching soon.</h2>
+            <p>
+              Die erste Edition kommt bald. Bis dahin bleibt es exklusiv.
+            </p>
+          </div>
+        </section>
+      </main>
 
       <style jsx>{`
-        :global(html) {
+        html {
           scroll-behavior: smooth;
         }
 
         :global(body) {
           margin: 0;
+          padding: 0;
           background: #f6f7f8;
           color: #0f172a;
           font-family: Arial, Helvetica, sans-serif;
         }
 
+        :global(*) {
+          box-sizing: border-box;
+        }
+
         .page {
           overflow-x: hidden;
           background:
-            radial-gradient(circle at top, rgba(255,255,255,0.95), rgba(246,247,248,1) 42%),
+            radial-gradient(circle at top, rgba(255, 255, 255, 0.95), rgba(246, 247, 248, 1) 42%),
             linear-gradient(to bottom, #f8fafc, #eef2f7);
         }
 
         .hero {
           position: relative;
-          height: 100svh;
-          min-height: 720px;
           width: 100%;
+          height: 100vh;
+          min-height: 720px;
           overflow: hidden;
           background: #dfe7ef;
         }
 
-        .heroImageWrap {
+        .hero-image-wrap {
           position: absolute;
           inset: 0;
-          will-change: transform;
           transition: transform 0.12s linear;
+          will-change: transform;
         }
 
-        .heroImage {
+        .hero-image {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
           object-fit: cover;
           object-position: center center;
         }
 
-        .heroOverlay {
+        .hero-overlay {
           position: absolute;
           inset: 0;
           background:
-            linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(0,0,0,0.08)),
-            linear-gradient(to top, rgba(8,15,28,0.14), rgba(8,15,28,0));
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.08)),
+            linear-gradient(to top, rgba(8, 15, 28, 0.14), rgba(8, 15, 28, 0));
           pointer-events: none;
         }
 
-        .heroBottomFade {
+        .hero-fade {
           position: absolute;
           left: 0;
           right: 0;
           bottom: 0;
           height: 180px;
-          background: linear-gradient(to top, #f6f7f8 0%, rgba(246,247,248,0) 100%);
+          background: linear-gradient(to top, #f6f7f8 0%, rgba(246, 247, 248, 0) 100%);
           pointer-events: none;
         }
 
         .intro {
-          max-width: 880px;
+          max-width: 900px;
           margin: 0 auto;
-          padding: 72px 24px 48px;
+          padding: 72px 24px 44px;
           text-align: center;
         }
 
@@ -226,54 +237,54 @@ export default function HomePage() {
           color: #64748b;
         }
 
-        .intro h2,
-        .productCopy h3,
-        .storyCard h3,
-        .notifyBox h3 {
+        .intro h1,
+        .product-copy h2,
+        .story-card h2,
+        .notify-box h2 {
           margin: 0;
+          color: #0b1324;
           line-height: 1.05;
           letter-spacing: -0.04em;
-          color: #0b1324;
         }
 
-        .intro h2 {
-          font-size: clamp(2.1rem, 5vw, 4.6rem);
+        .intro h1 {
+          font-size: clamp(2.2rem, 5vw, 4.8rem);
         }
 
-        .introText {
-          max-width: 700px;
+        .intro-text {
+          max-width: 720px;
           margin: 20px auto 0;
           font-size: 1.05rem;
           line-height: 1.7;
           color: #475569;
         }
 
-        .productSection {
+        .product-section {
           position: relative;
-          padding: 40px 24px 100px;
+          padding: 30px 24px 110px;
         }
 
-        .productStage {
+        .product-stage {
           max-width: 1240px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
-          gap: 40px;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 42px;
           align-items: center;
           transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        .canCluster {
+        .can-cluster {
           position: relative;
           height: 620px;
           border-radius: 38px;
-          background:
-            radial-gradient(circle at top center, rgba(255,255,255,0.95), rgba(240,244,248,0.82) 48%, rgba(226,232,240,0.86) 100%);
-          border: 1px solid rgba(148,163,184,0.18);
-          box-shadow:
-            0 28px 70px rgba(15,23,42,0.08),
-            inset 0 1px 0 rgba(255,255,255,0.9);
           overflow: hidden;
+          background:
+            radial-gradient(circle at top center, rgba(255, 255, 255, 0.96), rgba(240, 244, 248, 0.85) 52%, rgba(226, 232, 240, 0.9) 100%);
+          border: 1px solid rgba(148, 163, 184, 0.18);
+          box-shadow:
+            0 28px 70px rgba(15, 23, 42, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(14px);
         }
 
@@ -283,12 +294,12 @@ export default function HomePage() {
           height: 420px;
           border-radius: 30px 30px 22px 22px;
           background:
-            radial-gradient(circle at 22% 16%, rgba(255,255,255,0.96), rgba(245,247,250,0.98) 30%, rgba(231,236,242,0.95) 100%);
-          border: 1px solid rgba(148,163,184,0.2);
+            radial-gradient(circle at 22% 16%, rgba(255, 255, 255, 0.98), rgba(245, 247, 250, 0.98) 30%, rgba(231, 236, 242, 0.96) 100%);
+          border: 1px solid rgba(148, 163, 184, 0.2);
           box-shadow:
-            inset 0 0 0 1px rgba(255,255,255,0.75),
-            inset -18px 0 36px rgba(148,163,184,0.08),
-            0 18px 34px rgba(15,23,42,0.12);
+            inset 0 0 0 1px rgba(255, 255, 255, 0.75),
+            inset -18px 0 36px rgba(148, 163, 184, 0.08),
+            0 18px 34px rgba(15, 23, 42, 0.12);
           transform-origin: center bottom;
         }
 
@@ -309,14 +320,14 @@ export default function HomePage() {
           position: absolute;
           inset: 0;
           background-image:
-            radial-gradient(circle at 20% 18%, rgba(255,255,255,0.95) 0 1.2px, transparent 1.4px),
-            radial-gradient(circle at 38% 32%, rgba(255,255,255,0.88) 0 1.8px, transparent 2px),
-            radial-gradient(circle at 75% 24%, rgba(255,255,255,0.9) 0 1.5px, transparent 1.7px),
-            radial-gradient(circle at 62% 58%, rgba(255,255,255,0.86) 0 2px, transparent 2.2px),
-            radial-gradient(circle at 42% 76%, rgba(255,255,255,0.84) 0 2.4px, transparent 2.7px),
-            radial-gradient(circle at 80% 72%, rgba(255,255,255,0.88) 0 1.5px, transparent 1.8px),
-            radial-gradient(circle at 18% 64%, rgba(255,255,255,0.9) 0 1.6px, transparent 1.8px),
-            radial-gradient(circle at 68% 40%, rgba(255,255,255,0.82) 0 2.6px, transparent 2.9px);
+            radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.95) 0 1.2px, transparent 1.4px),
+            radial-gradient(circle at 38% 32%, rgba(255, 255, 255, 0.88) 0 1.8px, transparent 2px),
+            radial-gradient(circle at 75% 24%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 1.7px),
+            radial-gradient(circle at 62% 58%, rgba(255, 255, 255, 0.86) 0 2px, transparent 2.2px),
+            radial-gradient(circle at 42% 76%, rgba(255, 255, 255, 0.84) 0 2.4px, transparent 2.7px),
+            radial-gradient(circle at 80% 72%, rgba(255, 255, 255, 0.88) 0 1.5px, transparent 1.8px),
+            radial-gradient(circle at 18% 64%, rgba(255, 255, 255, 0.9) 0 1.6px, transparent 1.8px),
+            radial-gradient(circle at 68% 40%, rgba(255, 255, 255, 0.82) 0 2.6px, transparent 2.9px);
           opacity: 0.7;
           pointer-events: none;
         }
@@ -373,63 +384,63 @@ export default function HomePage() {
           white-space: nowrap;
         }
 
-        .canMain {
+        .can-main {
           left: 50%;
           top: 104px;
-          transform: translateX(-50%) rotate(-1deg);
+          transform: translateX(-50%) rotate(-2deg);
           z-index: 5;
         }
 
-        .canFrontLeft {
-          left: 16%;
-          top: 142px;
-          transform: rotate(-10deg);
+        .can-front-left {
+          left: 15%;
+          top: 150px;
+          transform: rotate(-13deg);
           z-index: 4;
         }
 
-        .canFrontRight {
-          right: 14%;
-          top: 146px;
-          transform: rotate(9deg);
+        .can-front-right {
+          right: 12%;
+          top: 148px;
+          transform: rotate(11deg);
           z-index: 4;
         }
 
-        .canBackLeft {
-          left: 8%;
-          top: 96px;
-          transform: rotate(-18deg) scale(0.94);
+        .can-back-left {
+          left: 7%;
+          top: 104px;
+          transform: rotate(-20deg) scale(0.94);
           opacity: 0.95;
           z-index: 2;
         }
 
-        .canBackRight {
-          right: 9%;
-          top: 92px;
-          transform: rotate(16deg) scale(0.95);
+        .can-back-right {
+          right: 8%;
+          top: 100px;
+          transform: rotate(18deg) scale(0.95);
           opacity: 0.95;
           z-index: 2;
         }
 
-        .reflection {
+        .surface-reflection {
           position: absolute;
           left: 7%;
           right: 7%;
-          bottom: 16px;
-          height: 80px;
+          bottom: 18px;
+          height: 82px;
           border-radius: 999px;
-          background: radial-gradient(circle, rgba(148,163,184,0.18), rgba(148,163,184,0));
+          background: radial-gradient(circle, rgba(148, 163, 184, 0.18), rgba(148, 163, 184, 0));
           filter: blur(16px);
         }
 
-        .productCopy {
+        .product-copy {
           padding-right: 20px;
         }
 
-        .productCopy h3 {
+        .product-copy h2 {
           font-size: clamp(2rem, 4.2vw, 4rem);
         }
 
-        .productCopy p {
+        .product-copy p {
           margin: 18px 0 0;
           max-width: 460px;
           font-size: 1.04rem;
@@ -437,15 +448,15 @@ export default function HomePage() {
           color: #475569;
         }
 
-        .ctaRow {
+        .button-row {
           display: flex;
-          gap: 14px;
           flex-wrap: wrap;
+          gap: 14px;
           margin-top: 28px;
         }
 
-        .primaryBtn,
-        .ghostBtn {
+        .primary-button,
+        .secondary-button {
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -458,41 +469,41 @@ export default function HomePage() {
           transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
         }
 
-        .primaryBtn {
+        .primary-button {
           background: #0f2340;
           color: #ffffff;
-          box-shadow: 0 16px 30px rgba(15,35,64,0.18);
+          box-shadow: 0 16px 30px rgba(15, 35, 64, 0.18);
         }
 
-        .ghostBtn {
-          background: rgba(255,255,255,0.65);
+        .secondary-button {
+          background: rgba(255, 255, 255, 0.7);
           color: #0f2340;
-          border: 1px solid rgba(15,35,64,0.1);
+          border: 1px solid rgba(15, 35, 64, 0.1);
         }
 
-        .primaryBtn:hover,
-        .ghostBtn:hover {
+        .primary-button:hover,
+        .secondary-button:hover {
           transform: translateY(-2px);
         }
 
-        .story {
+        .story-section {
           max-width: 1240px;
           margin: 0 auto;
-          padding: 36px 24px 100px;
+          padding: 30px 24px 100px;
         }
 
-        .storyCard {
-          max-width: 900px;
+        .story-card {
+          max-width: 920px;
           margin: 0 auto;
           padding: 40px 24px;
           text-align: center;
         }
 
-        .storyCard h3 {
+        .story-card h2 {
           font-size: clamp(1.8rem, 4vw, 3.4rem);
         }
 
-        .storyCard p:last-child {
+        .story-card p:last-child {
           margin: 18px auto 0;
           max-width: 720px;
           font-size: 1.02rem;
@@ -500,23 +511,23 @@ export default function HomePage() {
           color: #475569;
         }
 
-        .storyGrid {
+        .info-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 18px;
           margin-top: 16px;
         }
 
-        .infoTile {
+        .info-tile {
           padding: 26px;
           border-radius: 28px;
-          background: rgba(255,255,255,0.7);
-          border: 1px solid rgba(148,163,184,0.14);
-          box-shadow: 0 18px 40px rgba(15,23,42,0.05);
+          background: rgba(255, 255, 255, 0.72);
+          border: 1px solid rgba(148, 163, 184, 0.14);
+          box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
           backdrop-filter: blur(10px);
         }
 
-        .tileLabel {
+        .tile-label {
           display: block;
           margin-bottom: 10px;
           font-size: 0.78rem;
@@ -525,38 +536,37 @@ export default function HomePage() {
           color: #64748b;
         }
 
-        .infoTile strong {
+        .info-tile strong {
           font-size: 1.05rem;
           color: #0b1324;
         }
 
-        .notify {
+        .notify-section {
           padding: 0 24px 110px;
         }
 
-        .notifyBox {
+        .notify-box {
           max-width: 860px;
           margin: 0 auto;
           text-align: center;
           padding: 44px 24px;
           border-radius: 34px;
-          background:
-            linear-gradient(135deg, rgba(15,35,64,0.98), rgba(29,78,216,0.88));
+          background: linear-gradient(135deg, rgba(15, 35, 64, 0.98), rgba(29, 78, 216, 0.88));
           color: #ffffff;
-          box-shadow: 0 30px 70px rgba(15,35,64,0.2);
+          box-shadow: 0 30px 70px rgba(15, 35, 64, 0.2);
         }
 
-        .notifyBox .eyebrow,
-        .notifyBox p {
-          color: rgba(255,255,255,0.8);
+        .notify-box .eyebrow,
+        .notify-box p {
+          color: rgba(255, 255, 255, 0.82);
         }
 
-        .notifyBox h3 {
+        .notify-box h2 {
           color: #ffffff;
           font-size: clamp(1.9rem, 4vw, 3.2rem);
         }
 
-        .notifyBox p {
+        .notify-box p {
           margin: 16px 0 0;
           font-size: 1rem;
           line-height: 1.7;
@@ -565,106 +575,122 @@ export default function HomePage() {
         .floating {
           position: absolute;
           border-radius: 999px;
-          filter: blur(2px);
-          opacity: 0.9;
           pointer-events: none;
+          opacity: 0.95;
         }
 
-        .floatingOne {
-          top: 160px;
+        .raspberry {
+          background: radial-gradient(circle at 30% 30%, #ffb0c6, #e11d48 72%);
+          filter: blur(1px);
+        }
+
+        .lemon {
+          border-radius: 50%;
+          background:
+            radial-gradient(circle at center, rgba(255, 243, 170, 0.22) 0 46%, transparent 48%),
+            radial-gradient(circle at center, #fde68a 0 65%, #facc15 70%);
+          box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.35);
+        }
+
+        .floating.one.raspberry {
+          top: 150px;
           left: 8%;
           width: 68px;
           height: 68px;
-          background: radial-gradient(circle at 30% 30%, #ffb3c7, #e11d48 72%);
           animation: floatOne 10s ease-in-out infinite;
         }
 
-        .floatingTwo {
+        .floating.two.raspberry {
+          bottom: 100px;
+          left: 12%;
+          width: 52px;
+          height: 52px;
+          animation: floatThree 11s ease-in-out infinite;
+        }
+
+        .floating.one.lemon {
           top: 250px;
           right: 10%;
           width: 94px;
           height: 94px;
-          border-radius: 50%;
-          background:
-            radial-gradient(circle at center, rgba(255,240,170,0.22) 0 46%, transparent 48%),
-            radial-gradient(circle at center, #fde68a 0 65%, #facc15 70%);
-          box-shadow: inset 0 0 0 6px rgba(255,255,255,0.35);
           animation: floatTwo 13s ease-in-out infinite;
         }
 
-        .floatingThree {
-          bottom: 120px;
-          left: 12%;
-          width: 54px;
-          height: 54px;
-          background: radial-gradient(circle at 30% 30%, #ff9db6, #be123c 72%);
-          animation: floatThree 11s ease-in-out infinite;
-        }
-
-        .floatingFour {
-          bottom: 80px;
+        .floating.two.lemon {
+          bottom: 78px;
           right: 14%;
-          width: 86px;
-          height: 86px;
-          border-radius: 50%;
-          background:
-            radial-gradient(circle at center, rgba(255,240,170,0.18) 0 46%, transparent 48%),
-            radial-gradient(circle at center, #fde68a 0 65%, #f59e0b 70%);
-          box-shadow: inset 0 0 0 5px rgba(255,255,255,0.35);
+          width: 84px;
+          height: 84px;
           animation: floatFour 12s ease-in-out infinite;
         }
 
         @keyframes floatOne {
-          0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-          50% { transform: translateY(-22px) translateX(14px) rotate(10deg); }
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-22px) translateX(14px) rotate(10deg);
+          }
         }
 
         @keyframes floatTwo {
-          0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-          50% { transform: translateY(18px) translateX(-18px) rotate(-12deg); }
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(18px) translateX(-18px) rotate(-12deg);
+          }
         }
 
         @keyframes floatThree {
-          0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-          50% { transform: translateY(-16px) translateX(20px) rotate(14deg); }
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-16px) translateX(20px) rotate(14deg);
+          }
         }
 
         @keyframes floatFour {
-          0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-          50% { transform: translateY(16px) translateX(-12px) rotate(-10deg); }
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(16px) translateX(-12px) rotate(-10deg);
+          }
         }
 
         @media (max-width: 1100px) {
-          .productStage {
+          .product-stage {
             grid-template-columns: 1fr;
             gap: 28px;
           }
 
-          .productCopy {
+          .product-copy {
             padding-right: 0;
             text-align: center;
           }
 
-          .productCopy p {
+          .product-copy p {
             margin-left: auto;
             margin-right: auto;
           }
 
-          .ctaRow {
+          .button-row {
             justify-content: center;
           }
 
-          .storyGrid {
+          .info-grid {
             grid-template-columns: 1fr;
           }
         }
 
         @media (max-width: 768px) {
           .hero {
-            min-height: 100svh;
+            min-height: 100vh;
           }
 
-          .heroImage {
+          .hero-image {
             object-position: 58% center;
           }
 
@@ -672,11 +698,11 @@ export default function HomePage() {
             padding: 56px 20px 30px;
           }
 
-          .productSection {
+          .product-section {
             padding: 20px 16px 80px;
           }
 
-          .canCluster {
+          .can-cluster {
             height: 480px;
             border-radius: 28px;
           }
@@ -705,61 +731,61 @@ export default function HomePage() {
             width: 86%;
           }
 
-          .canMain {
+          .can-main {
             top: 102px;
           }
 
-          .canFrontLeft {
+          .can-front-left {
             left: 6%;
             top: 144px;
           }
 
-          .canFrontRight {
+          .can-front-right {
             right: 7%;
             top: 146px;
           }
 
-          .canBackLeft {
+          .can-back-left {
             left: -2%;
             top: 110px;
           }
 
-          .canBackRight {
+          .can-back-right {
             right: -2%;
             top: 112px;
           }
 
-          .reflection {
+          .surface-reflection {
             height: 56px;
             bottom: 10px;
           }
 
-          .story {
+          .story-section {
             padding: 20px 16px 80px;
           }
 
-          .notify {
+          .notify-section {
             padding: 0 16px 90px;
           }
 
-          .notifyBox {
+          .notify-box {
             border-radius: 26px;
             padding: 34px 20px;
           }
 
-          .floatingOne,
-          .floatingThree {
+          .floating.one.raspberry,
+          .floating.two.raspberry {
             width: 42px;
             height: 42px;
           }
 
-          .floatingTwo,
-          .floatingFour {
+          .floating.one.lemon,
+          .floating.two.lemon {
             width: 58px;
             height: 58px;
           }
         }
       `}</style>
-    </main>
+    </>
   );
 }
