@@ -117,7 +117,7 @@ export default function HomePage() {
             <p className="eyebrow">ALPINE SIP</p>
             <h2>Launching soon.</h2>
             <p>
-              Die erste Edition kommt bald. Bis dahin bleibt es exklusiv.
+              The first edition drops soon. Until then, it stays exclusive.
             </p>
           </div>
         </section>
