@@ -90,11 +90,9 @@ export default function HomePage() {
         <section className="story-section" id="story">
           <div className="story-card">
             <p className="eyebrow">THE IDEA</p>
-            <h2>Was hat dein letzter Skitag eigentlich geschmeckt?</h2>
+            <h2>Remember the taste of your last Ski day?</h2>
             <p>
-              Alpine Sip macht aus Skiwasser einen Signature Taste — nicht
-              zufällig, sondern wiedererkennbar. Premium, reduziert und mit
-              echtem Lifestyle-Charakter.
+              Alpine Sip transforms ski water into a signature taste — crafted, consistent, and made for a true lifestyle.
             </p>
           </div>
 
