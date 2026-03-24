@@ -43,9 +43,7 @@ export default function HomePage() {
           <p className="eyebrow">ALPINE SIP</p>
           <h1>Same taste. Different places.</h1>
           <p className="intro-text">
-            Premium Skiwasser mit Raspberry und Lemon — inspiriert vom perfekten
-            Skitag und gemacht für einen klaren, wiedererkennbaren Signature
-            Taste.
+            Premium ski water with raspberry and lemon — inspired by the perfect ski day and crafted for a clean, distinctive signature taste.
           </p>
         </section>
 
