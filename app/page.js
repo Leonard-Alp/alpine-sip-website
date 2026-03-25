@@ -4,15 +4,12 @@ import { useEffect, useState } from "react";
 
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
     const handleScroll = () => setScrollY(window.scrollY);
     handleScroll();
-
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -21,11 +18,6 @@ export default function HomePage() {
   const productOpacity = Math.min(Math.max((scrollY - 180) / 260, 0), 1);
   const productTranslateY = Math.max(70 - scrollY * 0.12, 0);
   const headerScrolled = scrollY > 30;
-
-  const fruitShiftA = scrollY * 0.08;
-  const fruitShiftB = scrollY * 0.05;
-  const fruitShiftC = scrollY * 0.035;
-  const fruitRotate = scrollY * 0.03;
 
   return (
     <>
@@ -40,7 +32,7 @@ export default function HomePage() {
               <a href="#story">Story</a>
               <a href="#taste">Taste</a>
               <a href="#lifestyle">Lifestyle</a>
-              <a href="#launch">Launching Soon</a>
+              <a href="#notify">Launching Soon</a>
             </nav>
           </div>
         </header>
@@ -63,7 +55,7 @@ export default function HomePage() {
           <div className="hero-fade" />
         </section>
 
-        <section className={`intro reveal ${mounted ? "show" : ""}`}>
+        <section className="intro">
           <p className="eyebrow">ALPINE SIP</p>
           <h1>Same taste. Different places.</h1>
           <p className="intro-text">
@@ -72,7 +64,7 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section className={`brand-section reveal ${mounted ? "show" : ""}`}>
+        <section className="brand-section">
           <div className="brand-card">
             <p className="eyebrow">SIGNATURE TASTE</p>
             <h2>Not just a drink. A feeling you remember.</h2>
@@ -84,52 +76,32 @@ export default function HomePage() {
           </div>
 
           <div className="brand-points">
-            <div className="brand-point stagger-1">
+            <div className="brand-point">
               <span>Inspired by ski culture</span>
             </div>
-            <div className="brand-point stagger-2">
+            <div className="brand-point">
               <span>Minimal premium aesthetic</span>
             </div>
-            <div className="brand-point stagger-3">
+            <div className="brand-point">
               <span>Crafted for strong recall</span>
             </div>
           </div>
         </section>
 
         <section className="product-section" id="taste">
-          <div
-            className="floating raspberry one depth-back"
-            style={{
-              transform: `translateY(${fruitShiftA * -1}px) translateX(${fruitShiftC}px) rotate(${fruitRotate}deg)`,
-            }}
-          />
-          <div
-            className="floating raspberry two"
-            style={{
-              transform: `translateY(${fruitShiftB * -1}px) translateX(${fruitShiftA * 0.15}px) rotate(${fruitRotate * -0.8}deg)`,
-            }}
-          />
-          <div
-            className="floating lemon one depth-front"
-            style={{
-              transform: `translateY(${fruitShiftC}px) translateX(${fruitShiftB * -0.4}px) rotate(${fruitRotate * -1.2}deg)`,
-            }}
-          />
-          <div
-            className="floating lemon two"
-            style={{
-              transform: `translateY(${fruitShiftB}px) translateX(${fruitShiftC * -0.5}px) rotate(${fruitRotate * 0.6}deg)`,
-            }}
-          />
+          <div className="floating raspberry one" />
+          <div className="floating raspberry two" />
+          <div className="floating lemon one" />
+          <div className="floating lemon two" />
 
           <div
-            className={`product-stage reveal ${mounted ? "show" : ""}`}
+            className="product-stage"
             style={{
               opacity: productOpacity,
               transform: `translateY(${productTranslateY}px)`,
             }}
           >
-            <div className="product-image-card image-hover-card">
+            <div className="product-image-card">
               <img
                 src="/images/alpine-beach-can.jpg"
                 alt="Alpine Sip cans in ice with raspberry and lemon"
@@ -146,7 +118,7 @@ export default function HomePage() {
               </p>
 
               <div className="button-row">
-                <a href="#launch" className="primary-button">
+                <a href="#notify" className="primary-button">
                   Launching soon
                 </a>
                 <a href="#story" className="secondary-button">
@@ -157,14 +129,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className={`benefits-section reveal ${mounted ? "show" : ""}`}>
+        <section className="benefits-section">
           <div className="section-heading">
             <p className="eyebrow">WHY ALPINE SIP</p>
             <h2>Clear identity. Recognizable taste.</h2>
           </div>
 
           <div className="benefits-grid">
-            <div className="benefit-card stagger-1">
+            <div className="benefit-card">
               <span className="tile-label">01</span>
               <h3>Signature taste</h3>
               <p>
@@ -173,7 +145,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="benefit-card stagger-2">
+            <div className="benefit-card">
               <span className="tile-label">02</span>
               <h3>Lifestyle-driven</h3>
               <p>
@@ -182,7 +154,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="benefit-card stagger-3">
+            <div className="benefit-card">
               <span className="tile-label">03</span>
               <h3>Minimal premium design</h3>
               <p>
@@ -193,7 +165,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className={`story-section reveal ${mounted ? "show" : ""}`} id="story">
+        <section className="story-section" id="story">
           <div className="story-card">
             <p className="eyebrow">THE IDEA</p>
             <h2>Remember the taste of your last ski day?</h2>
@@ -204,31 +176,23 @@ export default function HomePage() {
           </div>
 
           <div className="info-grid">
-            <div className="info-tile stagger-1">
+            <div className="info-tile">
               <span className="tile-label">Taste</span>
               <strong>Raspberry · Lemon</strong>
             </div>
-            <div className="info-tile stagger-2">
+            <div className="info-tile">
               <span className="tile-label">Mood</span>
               <strong>Après-Ski Lifestyle</strong>
             </div>
-            <div className="info-tile stagger-3">
+            <div className="info-tile">
               <span className="tile-label">Style</span>
               <strong>Minimal · Premium · Clean</strong>
             </div>
           </div>
         </section>
 
-        <section
-          className={`lifestyle-section reveal ${mounted ? "show" : ""}`}
-          id="lifestyle"
-        >
-          <div
-            className="lifestyle-image-card image-hover-card"
-            style={{
-              transform: `translateY(${Math.min(scrollY * 0.035, 26)}px)`,
-            }}
-          >
+        <section className="lifestyle-section" id="lifestyle">
+          <div className="lifestyle-image-card">
             <img
               src="/images/alpine-chair-hero.jpg"
               alt="Alpine Sip lifestyle"
@@ -248,8 +212,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className={`launch-section reveal ${mounted ? "show" : ""}`} id="launch">
-          <div className="launch-box">
+        <section className="notify-section" id="notify">
+          <div className="notify-box">
             <p className="eyebrow">FIRST EDITION</p>
             <h2>Launching soon.</h2>
             <p>
@@ -259,7 +223,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <footer className={`footer reveal ${mounted ? "show" : ""}`}>
+        <footer className="footer">
           <div className="footer-inner">
             <div>
               <p className="footer-brand">ALPINE SIP</p>
@@ -308,39 +272,6 @@ export default function HomePage() {
             linear-gradient(to bottom, #f8fafc, #eef2f7);
         }
 
-        .reveal {
-          opacity: 0;
-          transform: translateY(26px);
-          transition:
-            opacity 0.9s ease,
-            transform 0.9s ease;
-        }
-
-        .reveal.show {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .stagger-1,
-        .stagger-2,
-        .stagger-3 {
-          opacity: 0;
-          transform: translateY(26px);
-          animation: cardReveal 0.9s ease forwards;
-        }
-
-        .stagger-1 {
-          animation-delay: 0.08s;
-        }
-
-        .stagger-2 {
-          animation-delay: 0.18s;
-        }
-
-        .stagger-3 {
-          animation-delay: 0.28s;
-        }
-
         .site-header {
           position: fixed;
           top: 0;
@@ -348,14 +279,8 @@ export default function HomePage() {
           width: 100%;
           z-index: 50;
           padding: 18px 24px;
-          transition:
-            background 0.25s ease,
-            backdrop-filter 0.25s ease,
-            box-shadow 0.25s ease,
-            border-color 0.25s ease,
-            transform 0.5s ease,
-            opacity 0.5s ease;
-          animation: headerFade 0.9s ease forwards;
+          transition: background 0.25s ease, backdrop-filter 0.25s ease,
+            box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
         .site-header.scrolled {
@@ -381,10 +306,7 @@ export default function HomePage() {
           letter-spacing: 0.28em;
           text-transform: uppercase;
           color: #ffffff;
-          transition:
-            color 0.25s ease,
-            opacity 0.25s ease,
-            transform 0.22s ease;
+          transition: color 0.25s ease, opacity 0.25s ease;
         }
 
         .site-header.scrolled .brand-mark {
@@ -398,29 +320,11 @@ export default function HomePage() {
         }
 
         .nav a {
-          position: relative;
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 600;
           color: rgba(255, 255, 255, 0.92);
-          transition:
-            color 0.25s ease,
-            opacity 0.25s ease,
-            transform 0.22s ease;
-        }
-
-        .nav a::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: -6px;
-          width: 100%;
-          height: 1px;
-          background: currentColor;
-          transform: scaleX(0);
-          transform-origin: center;
-          transition: transform 0.25s ease;
-          opacity: 0.8;
+          transition: color 0.25s ease, opacity 0.25s ease;
         }
 
         .site-header.scrolled .nav a {
@@ -430,11 +334,6 @@ export default function HomePage() {
         .nav a:hover,
         .brand-mark:hover {
           opacity: 0.72;
-          transform: translateY(-1px);
-        }
-
-        .nav a:hover::after {
-          transform: scaleX(1);
         }
 
         .hero {
@@ -511,7 +410,7 @@ export default function HomePage() {
         .product-copy h2,
         .story-card h2,
         .lifestyle-copy h2,
-        .launch-box h2 {
+        .notify-box h2 {
           margin: 0;
           color: #0b1324;
           line-height: 1.05;
@@ -566,17 +465,6 @@ export default function HomePage() {
           border: 1px solid rgba(148, 163, 184, 0.14);
           box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
           text-align: center;
-          backdrop-filter: blur(10px);
-          transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
-        }
-
-        .brand-point:hover,
-        .benefit-card:hover,
-        .info-tile:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
         }
 
         .brand-point span {
@@ -588,7 +476,6 @@ export default function HomePage() {
         .product-section {
           position: relative;
           padding: 30px 24px 110px;
-          overflow: hidden;
         }
 
         .product-stage {
@@ -598,9 +485,7 @@ export default function HomePage() {
           grid-template-columns: 1.15fr 0.85fr;
           gap: 42px;
           align-items: center;
-          transition:
-            opacity 0.3s ease,
-            transform 0.3s ease;
+          transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .product-image-card,
@@ -615,19 +500,6 @@ export default function HomePage() {
           backdrop-filter: blur(14px);
         }
 
-        .image-hover-card {
-          transition:
-            transform 0.45s ease,
-            box-shadow 0.45s ease;
-        }
-
-        .image-hover-card:hover {
-          transform: translateY(-8px) scale(1.012);
-          box-shadow:
-            0 36px 90px rgba(15, 23, 42, 0.11),
-            inset 0 1px 0 rgba(255, 255, 255, 0.92);
-        }
-
         .product-image-card {
           height: 620px;
           border-radius: 38px;
@@ -638,12 +510,6 @@ export default function HomePage() {
           height: 100%;
           object-fit: cover;
           display: block;
-          transition: transform 0.7s ease;
-        }
-
-        .image-hover-card:hover .product-image,
-        .image-hover-card:hover .lifestyle-image {
-          transform: scale(1.035);
         }
 
         .product-copy {
@@ -658,7 +524,7 @@ export default function HomePage() {
         .lifestyle-copy p,
         .benefit-card p,
         .story-card p:last-child,
-        .launch-box p {
+        .notify-box p {
           margin: 18px 0 0;
           font-size: 1.04rem;
           line-height: 1.7;
@@ -687,11 +553,7 @@ export default function HomePage() {
           text-decoration: none;
           font-weight: 700;
           letter-spacing: 0.02em;
-          transition:
-            transform 0.18s ease,
-            box-shadow 0.18s ease,
-            background 0.18s ease,
-            opacity 0.18s ease;
+          transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
           border: none;
           cursor: pointer;
         }
@@ -710,11 +572,7 @@ export default function HomePage() {
 
         .primary-button:hover,
         .secondary-button:hover {
-          transform: translateY(-2px) scale(1.01);
-        }
-
-        .primary-button:hover {
-          box-shadow: 0 20px 40px rgba(15, 35, 64, 0.24);
+          transform: translateY(-2px);
         }
 
         .benefits-section {
@@ -746,9 +604,6 @@ export default function HomePage() {
           border: 1px solid rgba(148, 163, 184, 0.14);
           box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
           backdrop-filter: blur(10px);
-          transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
         }
 
         .benefit-card h3 {
@@ -804,7 +659,6 @@ export default function HomePage() {
         .lifestyle-image-card {
           height: 520px;
           border-radius: 36px;
-          transition: transform 0.25s linear, box-shadow 0.45s ease;
         }
 
         .lifestyle-overlay {
@@ -826,11 +680,11 @@ export default function HomePage() {
           max-width: 500px;
         }
 
-        .launch-section {
+        .notify-section {
           padding: 0 24px 110px;
         }
 
-        .launch-box {
+        .notify-box {
           max-width: 920px;
           margin: 0 auto;
           text-align: center;
@@ -843,22 +697,14 @@ export default function HomePage() {
           );
           color: #ffffff;
           box-shadow: 0 30px 70px rgba(15, 35, 64, 0.2);
-          transition:
-            transform 0.35s ease,
-            box-shadow 0.35s ease;
         }
 
-        .launch-box:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 36px 85px rgba(15, 35, 64, 0.26);
-        }
-
-        .launch-box .eyebrow,
-        .launch-box p {
+        .notify-box .eyebrow,
+        .notify-box p {
           color: rgba(255, 255, 255, 0.82);
         }
 
-        .launch-box h2 {
+        .notify-box h2 {
           color: #ffffff;
           font-size: clamp(1.9rem, 4vw, 3.2rem);
         }
@@ -903,14 +749,10 @@ export default function HomePage() {
           color: #0f2340;
           text-decoration: none;
           font-weight: 700;
-          transition:
-            opacity 0.2s ease,
-            transform 0.2s ease;
         }
 
         .footer-links a:hover {
           opacity: 0.72;
-          transform: translateY(-1px);
         }
 
         .floating {
@@ -918,24 +760,11 @@ export default function HomePage() {
           border-radius: 999px;
           pointer-events: none;
           opacity: 0.95;
-          transition: transform 0.18s linear;
-          will-change: transform;
-        }
-
-        .depth-back {
-          filter: blur(3px);
-          opacity: 0.65;
-        }
-
-        .depth-front {
-          filter: blur(0.2px);
         }
 
         .raspberry {
           background: radial-gradient(circle at 30% 30%, #ffb0c6, #e11d48 72%);
-          box-shadow:
-            inset -8px -10px 16px rgba(120, 0, 38, 0.18),
-            0 14px 30px rgba(225, 29, 72, 0.12);
+          filter: blur(1px);
         }
 
         .lemon {
@@ -943,9 +772,7 @@ export default function HomePage() {
           background:
             radial-gradient(circle at center, rgba(255, 243, 170, 0.22) 0 46%, transparent 48%),
             radial-gradient(circle at center, #fde68a 0 65%, #facc15 70%);
-          box-shadow:
-            inset 0 0 0 6px rgba(255, 255, 255, 0.35),
-            0 18px 34px rgba(250, 204, 21, 0.16);
+          box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.35);
         }
 
         .floating.one.raspberry {
@@ -980,69 +807,39 @@ export default function HomePage() {
           animation: floatFour 12s ease-in-out infinite;
         }
 
-        @keyframes headerFade {
-          0% {
-            opacity: 0;
-            transform: translateY(-18px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes cardReveal {
-          0% {
-            opacity: 0;
-            transform: translateY(26px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
         @keyframes floatOne {
           0%, 100% {
-            margin-top: 0;
-            margin-left: 0;
+            transform: translateY(0px) translateX(0px) rotate(0deg);
           }
           50% {
-            margin-top: -22px;
-            margin-left: 14px;
+            transform: translateY(-22px) translateX(14px) rotate(10deg);
           }
         }
 
         @keyframes floatTwo {
           0%, 100% {
-            margin-top: 0;
-            margin-left: 0;
+            transform: translateY(0px) translateX(0px) rotate(0deg);
           }
           50% {
-            margin-top: 18px;
-            margin-left: -18px;
+            transform: translateY(18px) translateX(-18px) rotate(-12deg);
           }
         }
 
         @keyframes floatThree {
           0%, 100% {
-            margin-top: 0;
-            margin-left: 0;
+            transform: translateY(0px) translateX(0px) rotate(0deg);
           }
           50% {
-            margin-top: -16px;
-            margin-left: 20px;
+            transform: translateY(-16px) translateX(20px) rotate(14deg);
           }
         }
 
         @keyframes floatFour {
           0%, 100% {
-            margin-top: 0;
-            margin-left: 0;
+            transform: translateY(0px) translateX(0px) rotate(0deg);
           }
           50% {
-            margin-top: 16px;
-            margin-left: -12px;
+            transform: translateY(16px) translateX(-12px) rotate(-10deg);
           }
         }
 
@@ -1118,7 +915,7 @@ export default function HomePage() {
           .benefits-section,
           .story-section,
           .lifestyle-section,
-          .launch-section,
+          .notify-section,
           .product-section {
             padding-left: 16px;
             padding-right: 16px;
@@ -1143,7 +940,7 @@ export default function HomePage() {
             padding-bottom: 80px;
           }
 
-          .launch-section {
+          .notify-section {
             padding-bottom: 90px;
           }
 
@@ -1155,10 +952,9 @@ export default function HomePage() {
           .lifestyle-image-card {
             height: 380px;
             border-radius: 28px;
-            transform: none !important;
           }
 
-          .launch-box {
+          .notify-box {
             border-radius: 26px;
             padding: 34px 20px;
           }
