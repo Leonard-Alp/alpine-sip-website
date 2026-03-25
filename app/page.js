@@ -17,10 +17,26 @@ export default function HomePage() {
   const heroTranslateY = Math.min(scrollY * 0.12, 40);
   const productOpacity = Math.min(Math.max((scrollY - 180) / 260, 0), 1);
   const productTranslateY = Math.max(70 - scrollY * 0.12, 0);
+  const headerScrolled = scrollY > 30;
 
   return (
     <>
       <main className="page">
+        <header className={`site-header ${headerScrolled ? "scrolled" : ""}`}>
+          <div className="header-inner">
+            <a href="#" className="brand-mark">
+              ALPINE SIP
+            </a>
+
+            <nav className="nav">
+              <a href="#story">Story</a>
+              <a href="#taste">Taste</a>
+              <a href="#lifestyle">Lifestyle</a>
+              <a href="#notify">Launching Soon</a>
+            </nav>
+          </div>
+        </header>
+
         <section className="hero">
           <div
             className="hero-image-wrap"
@@ -72,7 +88,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="product-section">
+        <section className="product-section" id="taste">
           <div className="floating raspberry one" />
           <div className="floating raspberry two" />
           <div className="floating lemon one" />
@@ -175,7 +191,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="lifestyle-section">
+        <section className="lifestyle-section" id="lifestyle">
           <div className="lifestyle-image-card">
             <img
               src="/images/alpine-chair-hero.jpg"
@@ -201,24 +217,9 @@ export default function HomePage() {
             <p className="eyebrow">FIRST EDITION</p>
             <h2>Launching soon.</h2>
             <p>
-              Be first to hear when the first edition drops. Until then, it
-              stays exclusive.
+              The first edition drops soon. Until then, Alpine Sip stays
+              exclusive.
             </p>
-
-            <form className="notify-form">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="notify-input"
-              />
-              <button type="submit" className="notify-button">
-                Get launch updates
-              </button>
-            </form>
-
-            <span className="notify-note">
-              Limited first release. Early access only.
-            </span>
           </div>
         </section>
 
@@ -258,9 +259,9 @@ export default function HomePage() {
           box-sizing: border-box;
         }
 
-        :global(input),
+        :global(a),
         :global(button),
-        :global(a) {
+        :global(input) {
           font-family: inherit;
         }
 
@@ -269,6 +270,70 @@ export default function HomePage() {
           background:
             radial-gradient(circle at top, rgba(255, 255, 255, 0.95), rgba(246, 247, 248, 1) 42%),
             linear-gradient(to bottom, #f8fafc, #eef2f7);
+        }
+
+        .site-header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 50;
+          padding: 18px 24px;
+          transition: background 0.25s ease, backdrop-filter 0.25s ease,
+            box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .site-header.scrolled {
+          background: rgba(255, 255, 255, 0.68);
+          backdrop-filter: blur(16px);
+          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+          border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+        }
+
+        .header-inner {
+          max-width: 1240px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+        }
+
+        .brand-mark {
+          text-decoration: none;
+          font-size: 0.86rem;
+          font-weight: 700;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: #ffffff;
+          transition: color 0.25s ease, opacity 0.25s ease;
+        }
+
+        .site-header.scrolled .brand-mark {
+          color: #0b1324;
+        }
+
+        .nav {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+        }
+
+        .nav a {
+          text-decoration: none;
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.92);
+          transition: color 0.25s ease, opacity 0.25s ease;
+        }
+
+        .site-header.scrolled .nav a {
+          color: #334155;
+        }
+
+        .nav a:hover,
+        .brand-mark:hover {
+          opacity: 0.72;
         }
 
         .hero {
@@ -478,8 +543,7 @@ export default function HomePage() {
         }
 
         .primary-button,
-        .secondary-button,
-        .notify-button {
+        .secondary-button {
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -494,8 +558,7 @@ export default function HomePage() {
           cursor: pointer;
         }
 
-        .primary-button,
-        .notify-button {
+        .primary-button {
           background: #0f2340;
           color: #ffffff;
           box-shadow: 0 16px 30px rgba(15, 35, 64, 0.18);
@@ -508,8 +571,7 @@ export default function HomePage() {
         }
 
         .primary-button:hover,
-        .secondary-button:hover,
-        .notify-button:hover {
+        .secondary-button:hover {
           transform: translateY(-2px);
         }
 
@@ -638,44 +700,13 @@ export default function HomePage() {
         }
 
         .notify-box .eyebrow,
-        .notify-box p,
-        .notify-note {
+        .notify-box p {
           color: rgba(255, 255, 255, 0.82);
         }
 
         .notify-box h2 {
           color: #ffffff;
           font-size: clamp(1.9rem, 4vw, 3.2rem);
-        }
-
-        .notify-form {
-          max-width: 640px;
-          margin: 28px auto 0;
-          display: grid;
-          grid-template-columns: 1fr auto;
-          gap: 12px;
-        }
-
-        .notify-input {
-          width: 100%;
-          min-height: 54px;
-          padding: 0 18px;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          outline: none;
-          background: rgba(255, 255, 255, 0.92);
-          color: #0f172a;
-          font-size: 1rem;
-        }
-
-        .notify-input::placeholder {
-          color: #64748b;
-        }
-
-        .notify-note {
-          display: inline-block;
-          margin-top: 16px;
-          font-size: 0.9rem;
         }
 
         .footer {
@@ -848,6 +879,25 @@ export default function HomePage() {
         }
 
         @media (max-width: 768px) {
+          .site-header {
+            padding: 14px 16px;
+          }
+
+          .header-inner {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+          }
+
+          .nav {
+            gap: 14px;
+            flex-wrap: wrap;
+          }
+
+          .nav a {
+            font-size: 0.9rem;
+          }
+
           .hero {
             min-height: 100vh;
           }
@@ -907,14 +957,6 @@ export default function HomePage() {
           .notify-box {
             border-radius: 26px;
             padding: 34px 20px;
-          }
-
-          .notify-form {
-            grid-template-columns: 1fr;
-          }
-
-          .notify-button {
-            width: 100%;
           }
 
           .floating.one.raspberry,
